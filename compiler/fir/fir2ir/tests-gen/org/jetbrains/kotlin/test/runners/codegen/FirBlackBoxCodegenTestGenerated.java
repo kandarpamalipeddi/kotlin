@@ -40111,6 +40111,12 @@ public class FirBlackBoxCodegenTestGenerated extends AbstractFirBlackBoxCodegenT
         public void testClassReference() throws Exception {
             runTest("compiler/testData/codegen/box/script/classReference.kt");
         }
+
+        @Test
+        @TestMetadata("localCaptureTests.kt")
+        public void testLocalCaptureTests() throws Exception {
+            runTest("compiler/testData/codegen/box/script/localCaptureTests.kt");
+        }
     }
 
     @Nested
