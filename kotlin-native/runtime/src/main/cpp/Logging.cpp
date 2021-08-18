@@ -82,7 +82,7 @@ KStdOrderedMap<KStdString, logging::Level> ParseTagsFilter(std::string_view tags
             konan::consoleErrorf("'. No logging will be performed\n");
             return {};
         }
-        result.insert(std::make_pair(KStdString(tag.value->data(), tag.value->size()), *level));
+        result.emplace(KStdString(tag.value->data(), tag.value->size()), *level);
     }
     return result;
 }
