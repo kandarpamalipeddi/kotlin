@@ -77,6 +77,13 @@ __attribute__((format(printf, 3, 4))) void Log(Level level, std::initializer_lis
 void VLog(Level level, std::initializer_list<const char*> tags, const char* format, std::va_list args) noexcept;
 
 } // namespace logging
+
+// Well known tags.
+// These are defined outside of logging namespace for simpler usage.
+
+inline constexpr const char* kTagGC = "gc";
+inline constexpr const char* kTagMM = "mm";
+
 } // namespace kotlin
 
 #endif // RUNTIME_LOGGING_H

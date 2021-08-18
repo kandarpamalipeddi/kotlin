@@ -51,10 +51,10 @@ NO_EXTERNAL_CALLS_CHECK bool kotlin::mm::ThreadSuspensionData::suspendIfRequeste
         std::unique_lock lock(gSuspensionMutex);
         if (IsThreadSuspensionRequested()) {
             auto threadId = konan::currentThreadId();
-            RuntimeLogDebug({"gc", "mm"}, "Suspending thread %d", threadId);
+            RuntimeLogDebug({kTagGC, kTagMM}, "Suspending thread %d", threadId);
             AutoReset scopedAssign(&suspended_, true);
             gSuspendsionCondVar.wait(lock, []() { return !IsThreadSuspensionRequested(); });
-            RuntimeLogDebug({"gc", "mm"}, "Resuming thread %d", threadId);
+            RuntimeLogDebug({kTagGC, kTagMM}, "Resuming thread %d", threadId);
             return true;
         }
     }

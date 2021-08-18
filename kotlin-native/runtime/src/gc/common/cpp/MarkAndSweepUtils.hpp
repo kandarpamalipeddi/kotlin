@@ -8,7 +8,6 @@
 
 #include "ExtraObjectData.hpp"
 #include "FinalizerHooks.hpp"
-#include "Logging.hpp"
 #include "Memory.h"
 #include "ObjectTraversal.hpp"
 #include "Runtime.h"
