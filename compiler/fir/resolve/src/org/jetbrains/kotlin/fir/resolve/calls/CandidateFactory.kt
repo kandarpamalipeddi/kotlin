@@ -19,6 +19,7 @@ import org.jetbrains.kotlin.fir.scopes.FirScope
 import org.jetbrains.kotlin.fir.symbols.FirBasedSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirErrorFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirErrorPropertySymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.resolve.calls.components.PostponedArgumentsAnalyzerContext
 import org.jetbrains.kotlin.resolve.calls.inference.model.ConstraintStorage
@@ -51,7 +52,7 @@ class CandidateFactory private constructor(
         extensionReceiverValue: ReceiverValue? = null,
         builtInExtensionFunctionReceiverValue: ReceiverValue? = null
     ): Candidate {
-        return Candidate(
+        val result = Candidate(
             symbol, dispatchReceiverValue, extensionReceiverValue,
             explicitReceiverKind, context.inferenceComponents.constraintSystemFactory, baseSystem,
             builtInExtensionFunctionReceiverValue?.receiverExpression?.let {
@@ -65,6 +66,13 @@ class CandidateFactory private constructor(
                 ExplicitReceiverKind.NO_EXPLICIT_RECEIVER, ExplicitReceiverKind.BOTH_RECEIVERS -> false
             }
         )
+        if (symbol is FirValueParameterSymbol) {
+            val defaultValue = symbol.fir.defaultValue
+            if (defaultValue is FirCallableReferenceAccess) {
+                result.addDiagnostic(Unsupported("References to variables aren't supported yet", defaultValue.calleeReference.source))
+            }
+        }
+        return result
     }
 
     private fun ReceiverValue?.isCandidateFromCompanionObjectTypeScope(): Boolean {

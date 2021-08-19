@@ -7,3 +7,7 @@ fun a() {
 }
 
 fun foo(a: Any) {}
+
+fun test1(test2: () -> Unit = ::test2) {} // Resolve to function
+private fun test2() {}
+fun test3(test4: () -> Unit = ::<!UNSUPPORTED!>test4<!>) {}
