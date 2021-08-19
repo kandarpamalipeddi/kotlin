@@ -5,6 +5,7 @@
 
 package org.jetbrains.kotlin.fir.resolve.calls
 
+import org.jetbrains.kotlin.descriptors.ClassKind
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
 import org.jetbrains.kotlin.fir.declarations.FirRegularClass
 import org.jetbrains.kotlin.fir.declarations.FirResolvePhase
@@ -19,6 +20,7 @@ import org.jetbrains.kotlin.fir.scopes.FirScope
 import org.jetbrains.kotlin.fir.symbols.FirBasedSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirErrorFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirErrorPropertySymbol
+import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirValueParameterSymbol
 import org.jetbrains.kotlin.fir.types.classId
 import org.jetbrains.kotlin.resolve.calls.components.PostponedArgumentsAnalyzerContext
@@ -50,7 +52,8 @@ class CandidateFactory private constructor(
         scope: FirScope?,
         dispatchReceiverValue: ReceiverValue? = null,
         extensionReceiverValue: ReceiverValue? = null,
-        builtInExtensionFunctionReceiverValue: ReceiverValue? = null
+        builtInExtensionFunctionReceiverValue: ReceiverValue? = null,
+        objectsByName: Boolean = false
     ): Candidate {
         val result = Candidate(
             symbol, dispatchReceiverValue, extensionReceiverValue,
@@ -71,6 +74,13 @@ class CandidateFactory private constructor(
             if (defaultValue is FirCallableReferenceAccess) {
                 result.addDiagnostic(Unsupported("References to variables aren't supported yet", defaultValue.calleeReference.source))
             }
+        } else if (objectsByName &&
+            context.bodyResolveContext.qualifierPartIndexFromEnd == 0 &&
+            symbol is FirRegularClassSymbol &&
+            symbol.classKind != ClassKind.OBJECT &&
+            symbol.companionObjectSymbol == null
+        ) {
+            result.addDiagnostic(NoCompanionObject)
         }
         return result
     }
