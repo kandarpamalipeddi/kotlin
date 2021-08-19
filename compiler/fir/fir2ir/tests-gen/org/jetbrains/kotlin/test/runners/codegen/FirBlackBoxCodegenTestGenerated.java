@@ -9729,6 +9729,12 @@ public class FirBlackBoxCodegenTestGenerated extends AbstractFirBlackBoxCodegenT
         }
 
         @Test
+        @TestMetadata("suspendConstructorCallArrayOf.kt")
+        public void testSuspendConstructorCallArrayOf() throws Exception {
+            runTest("compiler/testData/codegen/box/coroutines/suspendConstructorCallArrayOf.kt");
+        }
+
+        @Test
         @TestMetadata("suspendCoroutineFromStateMachine.kt")
         public void testSuspendCoroutineFromStateMachine() throws Exception {
             runTest("compiler/testData/codegen/box/coroutines/suspendCoroutineFromStateMachine.kt");

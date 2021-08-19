@@ -7535,6 +7535,11 @@ public class LightAnalysisModeTestGenerated extends AbstractLightAnalysisModeTes
             runTest("compiler/testData/codegen/box/coroutines/suspendCallsInArguments.kt");
         }
 
+        @TestMetadata("suspendConstructorCallArrayOf.kt")
+        public void testSuspendConstructorCallArrayOf() throws Exception {
+            runTest("compiler/testData/codegen/box/coroutines/suspendConstructorCallArrayOf.kt");
+        }
+
         @TestMetadata("suspendCoroutineFromStateMachine.kt")
         public void testSuspendCoroutineFromStateMachine() throws Exception {
             runTest("compiler/testData/codegen/box/coroutines/suspendCoroutineFromStateMachine.kt");
