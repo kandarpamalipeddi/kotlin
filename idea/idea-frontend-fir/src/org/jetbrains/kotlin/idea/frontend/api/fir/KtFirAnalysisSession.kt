@@ -85,6 +85,8 @@ private constructor(
 
     override val symbolInfoProviderImpl: KtSymbolInfoProvider = KtFirSymbolInfoProvider(this, token)
 
+    override val importInfoProviderImpl: KtImportInfoProvider = KtFirImportInfoProvider(this, token)
+
     override val typesCreatorImpl: KtTypeCreator = KtFirTypeCreator(this, token)
 
     override fun createContextDependentCopy(originalKtFile: KtFile, elementToReanalyze: KtElement): KtAnalysisSession {
