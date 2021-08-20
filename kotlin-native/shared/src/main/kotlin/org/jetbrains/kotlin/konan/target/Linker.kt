@@ -342,6 +342,7 @@ class GccBasedLinker(targetProperties: GccConfigurables)
             "Dynamic compiler rt librares are unsupported"
         }
         val targetSuffix = when (target) {
+            KonanTarget.LINUX_PPC64LE -> "powerpc64le"
             KonanTarget.LINUX_X64 -> "x86_64"
             else -> error("$target is not supported.")
         }
@@ -431,6 +432,7 @@ class MingwLinker(targetProperties: MingwConfigurables)
             "Dynamic compiler rt librares are unsupported"
         }
         val targetSuffix = when (target) {
+            KonanTarget.LINUX_PPC64LE -> "powerpc64le"
             KonanTarget.MINGW_X64 -> "x86_64"
             else -> error("$target is not supported.")
         }

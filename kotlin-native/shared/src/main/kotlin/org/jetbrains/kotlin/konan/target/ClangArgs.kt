@@ -37,6 +37,7 @@ class ClangArgs(private val configurables: Configurables) : Configurables by con
         get() = runtimeDefinitions.map { "-D$it" }
 
     private val binDir = when (HostManager.host) {
+        KonanTarget.LINUX_PPC64LE -> "$absoluteTargetToolchain/bin"
         KonanTarget.LINUX_X64 -> "$absoluteTargetToolchain/bin"
         KonanTarget.MINGW_X64 -> "$absoluteTargetToolchain/bin"
         KonanTarget.MACOS_X64,

@@ -100,6 +100,7 @@ abstract class KonanPropertiesLoader(override val target: KonanTarget,
 }
 
 private fun defaultArchiveTypeByHost(host: KonanTarget): ArchiveType = when (host) {
+    KonanTarget.LINUX_PPC64LE,
     KonanTarget.LINUX_X64,
     KonanTarget.MACOS_X64,
     KonanTarget.MACOS_ARM64 -> ArchiveType.TAR_GZ

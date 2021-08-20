@@ -53,7 +53,8 @@ linkerOpts.linux =  -fPIC \
 -lLLVMPasses -lLLVMObjCARCOpts -lLLVMCodeGen -lLLVMipo -lLLVMInstrumentation -lLLVMVectorize -lLLVMScalarOpts -lLLVMIRReader \
 -lLLVMAsmParser -lLLVMInstCombine -lLLVMAggressiveInstCombine -lLLVMCoverage -lLLVMTarget -lLLVMLinker -lLLVMTransformUtils \
 -lLLVMBitWriter -lLLVMAnalysis -lLLVMProfileData -lLLVMObject -lLLVMMCParser -lLLVMMC -lLLVMDebugInfoCodeView -lLLVMDebugInfoMSF \
--lLLVMBitReader -lLLVMCore -lLLVMBinaryFormat -lLLVMSupport -lLLVMDemangle
+-lLLVMBitReader -lLLVMCore -lLLVMBinaryFormat -lLLVMSupport -lLLVMDemangle -lLLVMPowerPCCodeGen -lLLVMPowerPCAsmParser -lLLVMPowerPCDisassembler \
+-lLLVMPowerPCDesc -lLLVMPowerPCInfo -lLLVMPowerPCAsmPrinter
 
 # ./llvm-config --libs analysis bitreader bitwriter core linker target coverage analysis ipo instrumentation lto arm aarch64 webassembly x86
 linkerOpts.mingw = -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info \

@@ -30,7 +30,8 @@ public enum class CpuArchitecture(val bitness: Int) {
     X64(64),
     MIPS32(32),
     MIPSEL32(32),
-    WASM32(32);
+    WASM32(32),
+    PPC64LE(64);
 }
 
 /**

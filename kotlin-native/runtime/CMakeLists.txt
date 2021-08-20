@@ -95,5 +95,6 @@ target_compile_definitions(runtime PUBLIC "-DKONAN_OBJC_INTEROP")
 target_compile_definitions(runtime PUBLIC "-DKONAN_CORE_SYMBOLICATION=1")
 target_compile_definitions(runtime PUBLIC "-DKONAN_HAS_CXX11_EXCEPTION_FUNCTIONS=1")
 target_compile_definitions(runtime PUBLIC "-DKONAN_REPORT_BACKTRACE_TO_IOS_CRASH_LOG=1")
+target_compile_definitions(runtime PUBLIC "-DKONAN_PPC64LE=1")
 
 
