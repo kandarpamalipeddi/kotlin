@@ -1340,7 +1340,7 @@ public final class Float private constructor() : Number(), Comparable<Float> {
          * A constant holding the "not a number" value of Float.
          */
         @Suppress("DIVISION_BY_ZERO")
-        public const val NaN: Float = -(0.0f / 0.0f)
+        public val NaN: Float = Math.sqrt(-1.0).toFloat()
 
         /**
          * The number of bytes used to represent an instance of Float in a binary form.
@@ -1646,7 +1646,7 @@ public final class Double private constructor() : Number(), Comparable<Double> {
          * A constant holding the "not a number" value of Double.
          */
         @Suppress("DIVISION_BY_ZERO")
-        public const val NaN: Double = -(0.0 / 0.0)
+        public val NaN: Double = Math.sqrt(-1.0)
 
         /**
          * The number of bytes used to represent an instance of Double in a binary form.
